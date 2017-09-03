@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 align="center">{{store.p1Score}}:{{store.p2Score}}</h2>
+    <h2 align="center">{{p1 && p1.name}} {{store.p1Score}}:{{store.p2Score}} {{p2 && p2.name}}</h2>
     <canvas ref="canvas"></canvas>
   </div>
 
@@ -20,13 +20,22 @@
     },
 
     computed: {
-      me
+      me,
+      playerKeys() {
+        return Object.keys(this.store.players)
+      },
+      p1() {
+        return this.store.players[this.playerKeys[0]]
+      },
+      p2() {
+        return this.store.players[this.playerKeys[1]]
+      },
     },
 
     watch: {
-      'store.players'(val) {
-        this.playerY = val[Object.keys(val)[0]].paddle;
-        this.aiY = val[Object.keys(val)[1]].paddle;
+      'store.players'() {
+        this.playerY = this.p1 && this.p1.paddle;
+        this.aiY = this.p2 && this.p2.paddle;
       }
     },
 

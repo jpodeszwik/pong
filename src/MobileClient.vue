@@ -11,7 +11,7 @@
           <v-btn v-if="!hasJoined" primary :disabled="!name" @click="join">Dołącz</v-btn>
           <template v-if="readyToGo">
             <v-btn error>Start</v-btn>
-            <v-slider v-model="paddle" min="0" max="100" step="0.1"></v-slider>
+            <v-slider v-model="paddle" min="0" max="400"></v-slider>
           </template>
           <p v-if="hasJoined && waitingForOtherPlayer">Waiting for other player to join...</p>
         </v-flex>
