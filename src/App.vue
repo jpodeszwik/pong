@@ -26,7 +26,7 @@
     name: 'app',
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your PING PONG App :)'
       }
     },
     mounted() {
@@ -58,7 +58,7 @@
       let ballSpeedX = -1;
       let ballSpeedY = 1;
 
-      canvas.addEventListener('mousemove', playerPosition);
+
 
       let topCanvas = canvas.offsetTop;
 
@@ -124,6 +124,12 @@
           ctx.fillRect(cw/2-lineWidht/2,linePosition, lineWidht, lineHeight)
         }
       }
+
+      function aiPosition(){
+
+      }
+
+      canvas.addEventListener('mousemove', playerPosition);
 
       function game(){
         table()
