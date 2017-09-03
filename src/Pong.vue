@@ -130,7 +130,7 @@
           ballSpeedX = -ballSpeedX;
 //          speedUp();
         }
-        if ((playerY <= bY || (playerY + paddelHeight) >=bY)) {
+        if ((self.playerY <= bY || (self.playerY + paddelHeight) >=bY)) {
           ballSpeedY = -ballSpeedY;
 //          speedUp();
         }
@@ -143,7 +143,7 @@
           ballSpeedX = -ballSpeedX;
 //          speedUp();
         }
-        if ((aiY <= bY || (aiY + paddelHeight) >=bY)) {
+        if ((self.aiY <= bY || (self.aiY + paddelHeight) >=bY)) {
           ballSpeedY = -ballSpeedY;
 //          speedUp();
         }
