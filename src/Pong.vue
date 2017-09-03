@@ -60,19 +60,24 @@
         ctx.fillRect(playerX, self.playerY, paddelWidth, paddelHeight);
       }
 
+      function applyBoundings(requestedY) {
+        var calculatedY = requestedY - topCanvas - paddelHeight / 2;
+        if (calculatedY >= ch - paddelHeight) {
+          calculatedY = ch - paddelHeight;
+        }
+
+        if (calculatedY <= 0) {
+          calculatedY = 0;
+        }
+        return calculatedY;
+      }
+
       function movePlayer(newY) {
-        var newPlayerY = newY - topCanvas - paddelHeight / 2;
-        if (newPlayerY >= ch - paddelHeight) {
-          newPlayerY = ch - paddelHeight;
-        }
+        self.store.playerY = applyBoundings(newY);
+      }
 
-        if (newPlayerY <= 0) {
-          newPlayerY = 0;
-        }
-
-        self.store.playerY = newPlayerY;
-
-        self.store.aiY = newPlayerY;
+      function moveAi(newY) {
+        self.store.aiY = applyBoundings(newY);
       }
 
       function ai() {
@@ -121,6 +126,7 @@
 
       function mouseMove(e) {
         movePlayer(e.clientY);
+        moveAi(e.clientY);
       }
 
       canvas.addEventListener('mousemove', mouseMove);
