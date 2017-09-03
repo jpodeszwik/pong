@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import store from './store'
+  import store, {me} from './store'
 
   export default {
     data() {
@@ -19,12 +19,14 @@
       }
     },
 
+    computed: {
+      me
+    },
+
     watch: {
-      'store.playerY'(val) {
-        this.playerY = val;
-      },
-      'store.aiY'(val) {
-        this.aiY = val;
+      'store.players'(val) {
+        this.playerY = val[Object.keys(val)[0]].paddle;
+        this.aiY = val[Object.keys(val)[1]].paddle;
       }
     },
 
@@ -78,13 +80,6 @@
         return calculatedY;
       }
 
-      function movePlayer(newY) {
-        self.store.playerY = applyBoundings(newY);
-      }
-
-      function moveAi(newY) {
-        self.store.aiY = applyBoundings(newY);
-      }
 
       function ai() {
         ctx.fillStyle = 'yellow';
@@ -97,9 +92,9 @@
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
-        if(ballX <= 0){
+        if (ballX <= 0) {
           store.p2Score++;
-        }else if(ballX + ballSize >= cw ){
+        } else if (ballX + ballSize >= cw) {
           store.p1Score++;
         }
         if (ballY + ballSize >= ch || ballY <= 0) {
@@ -161,13 +156,6 @@
           ctx.fillRect(cw / 2 - lineWidht / 2, linePosition, lineWidht, lineHeight)
         }
       }
-
-      function mouseMove(e) {
-        movePlayer(e.clientY);
-        moveAi(e.clientY);
-      }
-
-      canvas.addEventListener('mousemove', mouseMove);
 
       function reset() {
         ballSpeedX = -4;

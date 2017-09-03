@@ -32,8 +32,12 @@ export function joinGame(name) {
 export function playersCount() {
   return Object.keys(store.players).length
 }
-export function hasJoined() {
+export function me() {
   return store.players[store.me];
+}
+
+export function hasJoined() {
+  return !!me();
 }
 
 export function setPaddle(paddle) {
