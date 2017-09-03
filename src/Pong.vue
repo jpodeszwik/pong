@@ -122,8 +122,6 @@
   body {
     /*wyzerowanie marginesu*/
     margin: 0;
-    /*body ma zajmować wysokosć przeglądarki*/
-    height: 100vh;
     /*wyśrodkowanie elementu canvas*/
     display: flex;
     align-items: center;
