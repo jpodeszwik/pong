@@ -35,3 +35,7 @@ export function playersCount() {
 export function hasJoined() {
   return store.players[store.me];
 }
+
+export function setPaddle(paddle) {
+   database.ref('players').child(store.me).child('paddle').set(paddle)
+}
