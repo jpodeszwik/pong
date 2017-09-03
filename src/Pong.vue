@@ -86,8 +86,7 @@
       }
 
       function ball() {
-//        console.log("ball X: " + ballX);
-//        console.log("ball Y: " + ballY);
+//        console.log("ball X: " + ballX)
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(ballX, ballY, ballSize, ballSize);
         ballX += ballSpeedX;
@@ -96,11 +95,9 @@
 
         if (ballY + ballSize >= ch || ballY <= 0) {
           ballSpeedY = -ballSpeedY;
-//          speedUp();
         }
         if (ballX + ballSize >= cw || ballX <= 0) {
-          ballSpeedX = -ballSpeedX;
-//          speedUp();
+          reset();
         }
 
 
@@ -129,8 +126,8 @@
         }
       }
 
-      function hitPlayer2(){
-        if (ballX + ballSize >= aiX && ballX + ballSize <= aiX + paddelWidth && ballY >= self.aiY -ballSize && ballY <= self.aiY + paddelHeight) {
+      function hitPlayer2() {
+        if (ballX + ballSize >= aiX && ballX + ballSize <= aiX + paddelWidth && ballY >= self.aiY - ballSize && ballY <= self.aiY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
         }
       }
@@ -151,6 +148,13 @@
       }
 
       canvas.addEventListener('mousemove', mouseMove);
+
+      function reset() {
+        ballSpeedX = -4;
+        ballSpeedY = 1;
+        ballX = cw / 2 - ballSize / 2;
+        ballY = ch / 2 - ballSize / 2;
+      }
 
       function game() {
         table()
