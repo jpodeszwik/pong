@@ -121,14 +121,22 @@
       }
 
       function hitPlayer1() {
-        if (ballX >= playerX && ballX <= playerX + paddelWidth && ballY >= self.playerY - ballSize && ballY <= self.playerY + paddelHeight) {
+        if (ballX >= playerX &&
+          ballX <= playerX + paddelWidth &&
+          ballY >= self.playerY &&
+          ballY <= self.playerY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
+          ballSpeedY = -ballSpeedY;
         }
       }
 
       function hitPlayer2() {
-        if (ballX + ballSize >= aiX && ballX + ballSize <= aiX + paddelWidth && ballY >= self.aiY - ballSize && ballY <= self.aiY + paddelHeight) {
+        if (ballX + ballSize >= aiX &&
+          ballX + ballSize <= aiX + paddelWidth &&
+          ballY >= self.aiY &&
+          ballY <= self.aiY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
+          ballSpeedY = -ballSpeedY;
         }
       }
 
