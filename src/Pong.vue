@@ -47,7 +47,7 @@
       const lineWidht = 6;
       const lineHeight = 16;
 
-      let ballSpeedX = -1;
+      let ballSpeedX = -5;
       let ballSpeedY = 1;
 
 
@@ -124,28 +124,14 @@
       }
 
       function hitPlayer1() {
-        var bX = ballX;
-        var bY = ballY;
-        if ((playerX<= bX || (playerX + paddelWidth))>=bX) {
+        if (ballX >= playerX && ballX <= playerX + paddelWidth && ballY >= self.playerY - ballSize && ballY <= self.playerY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
-//          speedUp();
-        }
-        if ((self.playerY <= bY || (self.playerY + paddelHeight) >=bY)) {
-          ballSpeedY = -ballSpeedY;
-//          speedUp();
         }
       }
 
       function hitPlayer2(){
-        var bX = ballX;
-        var bY = ballY;
-        if ((cw- aiX <= bX || (cw - (aiX - paddelWidth)))>=bX) {
+        if (ballX + ballSize >= aiX && ballX + ballSize <= aiX + paddelWidth && ballY >= self.aiY -ballSize && ballY <= self.aiY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
-//          speedUp();
-        }
-        if ((self.aiY <= bY || (self.aiY + paddelHeight) >=bY)) {
-          ballSpeedY = -ballSpeedY;
-//          speedUp();
         }
       }
 
