@@ -3,7 +3,22 @@
 </template>
 
 <script>
+  import store from './store'
+
   export default {
+    data() {
+      return {
+        store,
+        playerY:200
+      }
+    },
+
+    watch: {
+      'store.playerY'(val) {
+        this.playerY = val;
+      }
+    },
+
     mounted() {
       const canvas = this.$refs.canvas;
       const ctx = canvas.getContext('2d');
@@ -24,7 +39,6 @@
 
       const playerX = 70;
       const aiX = 910;
-      let playerY = 200;
       let aiY = 200;
 
       const lineWidht = 6;
@@ -35,24 +49,29 @@
 
 
       let topCanvas = canvas.offsetTop;
+      
+      const self = this;
 
       function player() {
         ctx.fillStyle = '#7FFF00';
-        ctx.fillRect(playerX, playerY, paddelWidth, paddelHeight);
+        ctx.fillRect(playerX, self.playerY, paddelWidth, paddelHeight);
       }
 
       function playerPosition(e) {
         console.log("mouse position to: " + (e.clientY - topCanvas));
-        playerY = e.clientY - topCanvas - paddelHeight / 2;
-        if (playerY >= ch - paddelHeight) {
-          playerY = ch - paddelHeight;
+
+        var newPlayerY = e.clientY - topCanvas - paddelHeight / 2;
+        if (newPlayerY >= ch - paddelHeight) {
+          newPlayerY = ch - paddelHeight;
         }
 
-        if (playerY <= 0) {
-          playerY = 0;
+        if (newPlayerY <= 0) {
+          newPlayerY = 0;
         }
 
-        aiY = playerY;
+        self.store.playerY = newPlayerY;
+
+        aiY = newPlayerY;
       }
 
       function ai() {
