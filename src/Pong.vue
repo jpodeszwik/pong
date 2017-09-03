@@ -61,34 +61,69 @@
       }
 
       function ball() {
+//        console.log("ball X: " + ballX);
+//        console.log("ball Y: " + ballY);
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(ballX, ballY, ballSize, ballSize);
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
+
         if (ballY + ballSize >= ch || ballY <= 0) {
           ballSpeedY = -ballSpeedY;
-          speedUp();
+//          speedUp();
         }
         if (ballX + ballSize >= cw || ballX <= 0) {
           ballSpeedX = -ballSpeedX;
-          speedUp();
+//          speedUp();
         }
 
-        function speedUp() {
-          if (ballSpeedX > 0) {
-            ballSpeedX += .2;
-          } else if (ballSpeedX < 0) {
-            ballSpeedX -= .2;
-          }
 
-          if (ballSpeedY > 0) {
-            ballSpeedY += .2;
-          } else {
-            ballSpeedY -= .2;
-          }
+        hitPlayer1();
+        hitPlayer2();
+
+      }
+
+      function speedUp() {
+        if (ballSpeedX > 0) {
+          ballSpeedX += .2;
+        } else if (ballSpeedX < 0) {
+          ballSpeedX -= .2;
+        }
+
+        if (ballSpeedY > 0) {
+          ballSpeedY += .2;
+        } else {
+          ballSpeedY -= .2;
         }
       }
+
+      function hitPlayer1() {
+        var bX = ballX;
+        var bY = ballY;
+        if ((playerX<= bX || (playerX + paddelWidth))>=bX) {
+          ballSpeedX = -ballSpeedX;
+//          speedUp();
+        }
+        if ((playerY <= bY || (playerY + paddelHeight) >=bY)) {
+          ballSpeedY = -ballSpeedY;
+//          speedUp();
+        }
+      }
+
+      function hitPlayer2(){
+        var bX = ballX;
+        var bY = ballY;
+        if ((cw- aiX <= bX || (cw - (aiX - paddelWidth)))>=bX) {
+          ballSpeedX = -ballSpeedX;
+//          speedUp();
+        }
+        if ((aiY <= bY || (aiY + paddelHeight) >=bY)) {
+          ballSpeedY = -ballSpeedY;
+//          speedUp();
+        }
+      }
+
 
       function table() {
         ctx.fillStyle = 'black';
