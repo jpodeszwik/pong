@@ -108,15 +108,15 @@
 
       function speedUp() {
         if (ballSpeedX > 0) {
-          ballSpeedX += .2;
+          ballSpeedX += .7;
         } else if (ballSpeedX < 0) {
-          ballSpeedX -= .2;
+          ballSpeedX -= .7;
         }
 
         if (ballSpeedY > 0) {
-          ballSpeedY += .2;
+          ballSpeedY += .7;
         } else {
-          ballSpeedY -= .2;
+          ballSpeedY -= .7;
         }
       }
 
@@ -127,6 +127,7 @@
           ballY <= self.playerY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
           ballSpeedY = -ballSpeedY;
+          speedUp();
         }
       }
 
@@ -137,6 +138,7 @@
           ballY <= self.aiY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
           ballSpeedY = -ballSpeedY;
+          speedUp();
         }
       }
 
