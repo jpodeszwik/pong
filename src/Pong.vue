@@ -177,8 +177,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /*kolor tła całej strony*/
-    background-color: darkgray;
   }
 
   canvas {
