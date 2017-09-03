@@ -86,7 +86,7 @@
         ctx.fillRect(aiX, aiY, paddelWidth, paddelHeight);
       }
 
-      funtion ball(){
+      function ball(){
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(ballX, ballY, ballSize, ballSize);
         ballX +=ballSpeedX;
@@ -99,6 +99,20 @@
         if (ballX+ballSize >= cw || ballX <=0){
           ballSpeedX=-ballSpeedX;
           soeedUp();
+        }
+
+        function speedUp(){
+          if(ballSpeedX >0){
+            ballSpeedX+=.2;
+          }else if(ballSpeedX <0){
+            ballSpeedX -=.2;
+          }
+
+          if(ballSpeedY >0){
+            ballSpeedY+=.2;
+          }else{
+            ballSpeedY-=.2;
+          }
         }
       }
 
