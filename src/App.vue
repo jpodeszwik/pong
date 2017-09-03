@@ -58,7 +58,7 @@
       let ballSpeedX = -1;
       let ballSpeedY = 1;
 
-      canvas.addEventListener('mousemove', playerPosition());
+//      canvas.addEventListener('mousemove', playerPosition());
 
       let topCanvas = canvas.offsetTop;
 
@@ -115,6 +115,24 @@
           }
         }
       }
+
+      function table(){
+        ctx.fillStyle='black';
+        ctx.fillRect(0,0,cw,ch);
+        for(let linePosition =20; linePosition < ch; linePosition+=30){
+          ctx.fillStyle = "gray";
+          ctx.fillRect(cw/2-lineWidht/2,linePosition, lineWidht, lineHeight)
+        }
+      }
+
+      function game(){
+        table()
+        ball()
+        player()
+        ai()
+      }
+
+      setInterval(game, 1000/60);
 
     }
   }
