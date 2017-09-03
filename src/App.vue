@@ -58,7 +58,7 @@
       let ballSpeedX = -1;
       let ballSpeedY = 1;
 
-//      canvas.addEventListener('mousemove', playerPosition());
+      canvas.addEventListener('mousemove', playerPosition);
 
       let topCanvas = canvas.offsetTop;
 
@@ -90,7 +90,7 @@
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(ballX, ballY, ballSize, ballSize);
         ballX +=ballSpeedX;
-        ballY+=ballSpeedy;
+        ballY+=ballSpeedY;
 
         if(ballY+ballSize >= ch || ballY<=0){
           ballSpeedY = -ballSpeedY;
@@ -132,7 +132,7 @@
         ai()
       }
 
-      setInterval(game, 1000/60);
+      setInterval(game, 1000/60)
 
     }
   }
