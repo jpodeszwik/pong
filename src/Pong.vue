@@ -9,7 +9,7 @@
     data() {
       return {
         store,
-        playerY:200
+        playerY: 200
       }
     },
 
@@ -57,10 +57,8 @@
         ctx.fillRect(playerX, self.playerY, paddelWidth, paddelHeight);
       }
 
-      function playerPosition(e) {
-        console.log("mouse position to: " + (e.clientY - topCanvas));
-
-        var newPlayerY = e.clientY - topCanvas - paddelHeight / 2;
+      function movePlayer(newY) {
+        var newPlayerY = newY - topCanvas - paddelHeight / 2;
         if (newPlayerY >= ch - paddelHeight) {
           newPlayerY = ch - paddelHeight;
         }
@@ -122,7 +120,11 @@
 
       }
 
-      canvas.addEventListener('mousemove', playerPosition);
+      function mouseMove(e) {
+        movePlayer(e.clientY);
+      }
+
+      canvas.addEventListener('mousemove', mouseMove);
 
       function game() {
         table()
