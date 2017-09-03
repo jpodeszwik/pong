@@ -1,5 +1,10 @@
 <template>
-  <canvas ref="canvas"></canvas>
+  <div>
+    <div>{{store.p1Score}}:{{store.p2Score}}</div>
+    <canvas ref="canvas"></canvas>
+  </div>
+
+
 </template>
 
 <script>
@@ -24,6 +29,7 @@
     },
 
     mounted() {
+
       const canvas = this.$refs.canvas;
       const ctx = canvas.getContext('2d');
 
@@ -86,17 +92,21 @@
       }
 
       function ball() {
-//        console.log("ball X: " + ballX)
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(ballX, ballY, ballSize, ballSize);
         ballX += ballSpeedX;
         ballY += ballSpeedY;
 
-
+        if(ballX <= 0){
+          store.p2Score++;
+        }else if(ballX + ballSize >= cw ){
+          store.p1Score++;
+        }
         if (ballY + ballSize >= ch || ballY <= 0) {
           ballSpeedY = -ballSpeedY;
         }
         if (ballX + ballSize >= cw || ballX <= 0) {
+
           reset();
         }
 
@@ -108,27 +118,37 @@
 
       function speedUp() {
         if (ballSpeedX > 0) {
-          ballSpeedX += .2;
+          ballSpeedX += .7;
         } else if (ballSpeedX < 0) {
-          ballSpeedX -= .2;
+          ballSpeedX -= .7;
         }
 
         if (ballSpeedY > 0) {
-          ballSpeedY += .2;
+          ballSpeedY += .7;
         } else {
-          ballSpeedY -= .2;
+          ballSpeedY -= .7;
         }
       }
 
       function hitPlayer1() {
-        if (ballX >= playerX && ballX <= playerX + paddelWidth && ballY >= self.playerY - ballSize && ballY <= self.playerY + paddelHeight) {
+        if (ballX >= playerX &&
+          ballX <= playerX + paddelWidth &&
+          ballY >= self.playerY &&
+          ballY <= self.playerY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
+          ballSpeedY = -ballSpeedY;
+          speedUp();
         }
       }
 
       function hitPlayer2() {
-        if (ballX + ballSize >= aiX && ballX + ballSize <= aiX + paddelWidth && ballY >= self.aiY - ballSize && ballY <= self.aiY + paddelHeight) {
+        if (ballX + ballSize >= aiX &&
+          ballX + ballSize <= aiX + paddelWidth &&
+          ballY >= self.aiY &&
+          ballY <= self.aiY + paddelHeight) {
           ballSpeedX = -ballSpeedX;
+          ballSpeedY = -ballSpeedY;
+          speedUp();
         }
       }
 
