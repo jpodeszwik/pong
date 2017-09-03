@@ -98,7 +98,7 @@
         }
         if (ballX+ballSize >= cw || ballX <=0){
           ballSpeedX=-ballSpeedX;
-          soeedUp();
+          speedUp();
         }
 
         function speedUp(){
