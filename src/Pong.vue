@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>{{store.p1Score}}:{{store.p2Score}}</div>
+    <h2 align="center">{{store.p1Score}}:{{store.p2Score}}</h2>
     <canvas ref="canvas"></canvas>
   </div>
 
