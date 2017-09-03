@@ -9,13 +9,17 @@
     data() {
       return {
         store,
-        playerY: 200
+        playerY: 200,
+        aiY: 200,
       }
     },
 
     watch: {
       'store.playerY'(val) {
         this.playerY = val;
+      },
+      'store.aiY'(val) {
+        this.aiY = val;
       }
     },
 
@@ -39,7 +43,6 @@
 
       const playerX = 70;
       const aiX = 910;
-      let aiY = 200;
 
       const lineWidht = 6;
       const lineHeight = 16;
@@ -49,7 +52,7 @@
 
 
       let topCanvas = canvas.offsetTop;
-      
+
       const self = this;
 
       function player() {
@@ -69,12 +72,12 @@
 
         self.store.playerY = newPlayerY;
 
-        aiY = newPlayerY;
+        self.store.aiY = newPlayerY;
       }
 
       function ai() {
         ctx.fillStyle = 'yellow';
-        ctx.fillRect(aiX, aiY, paddelWidth, paddelHeight);
+        ctx.fillRect(aiX, self.aiY, paddelWidth, paddelHeight);
       }
 
       function ball() {
@@ -114,10 +117,6 @@
           ctx.fillStyle = "gray";
           ctx.fillRect(cw / 2 - lineWidht / 2, linePosition, lineWidht, lineHeight)
         }
-      }
-
-      function aiPosition() {
-
       }
 
       function mouseMove(e) {

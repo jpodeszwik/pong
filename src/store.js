@@ -1,5 +1,6 @@
 var store = {
-  playerY: undefined
+  playerY: undefined,
+  aiY: undefined,
 };
 
 export default store;
