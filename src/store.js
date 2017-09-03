@@ -13,7 +13,9 @@ const store = {
   playerY: undefined,
   aiY: undefined,
   players: {},
-  me: undefined
+  me: undefined,
+  p1Score: 0,
+  p2Score:0
 };
 
 database.ref('players').on('value', function (dataSnapshot) {
@@ -35,3 +37,4 @@ export function playersCount() {
 export function hasJoined() {
   return store.players[store.me];
 }
+
